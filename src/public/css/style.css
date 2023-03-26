@@ -1,0 +1,58 @@
+body {
+    min-width: 50%;
+    max-width: 100%;
+    background-color: #111111;
+    color: #dddddd;
+}
+
+main {
+    display: flex;
+}
+
+.button {
+    padding: 12px;
+    width: fit-content;
+    user-select: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #333333;
+}
+
+#new-file-button, #delete-file-button {
+    border: solid #dddddd;
+    border-radius: 8px;
+}
+
+#files-list-container {
+    margin: 4px 4px 4px 0px;
+    border: solid #ddd;
+    border-radius: 8px;
+    width: 50%;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-list-item {
+    margin: 0 0 0 0;
+    border: none;
+    width: 95%;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#file-details-container {
+    margin: 4px 4px 4px 0px;
+    border: solid #ddd;
+    border-radius: 8px;
+    width: 50%;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

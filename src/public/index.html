@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/main.js" type="module"></script>
+
+    <title>Pajama Man</title>
+</head>
+<body>
+    <header>
+        <h1>Pajama Man</h1>
+
+        <div id="crud-options" style="display: flex; justify-content: space-around;">
+            <!-- Opens a modal with a "New Project" form -->
+            <div id="new-file-button" class="button">New File Button</div>
+            <!-- Opens a popup that asks to confirm delete -->
+            <div id="delete-file-button" class="button">Delete File Button</div>
+        </div>
+    </header>
+    <main>
+        <div id="files-list-container"></div>
+        <div id="file-details-container">
+            <h1 id="file-details-title" class="file-details"></h1>
+            <p id="file-details-content" class="file-details"></p>
+        </div>
+    </main>
+</body>
+</html>
