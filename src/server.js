@@ -20,6 +20,7 @@ server.get("/files", (req, res) => {
                 arr.push(fileName)
             });
             res.send(arr);
+            res.end();
         });
 });
 
@@ -40,13 +41,18 @@ server.post("/new_file_request", (req, res) => {
     console.log(req.body);
 
     let fileComposition = `{ "title": "${req.body.fileTitle}", "content":"${req.body.fileContent}" }`
-
-    let filePath = path.join(__dirname, "files_db", req.body.fileName);
-    writeFile(filePath, fileComposition, { encoding: "utf-8" })
-        .then(() => {
-            res.send(req.body.fileName + " added to 'files_db'");
-            res.end();
-        });
+    // let filePath = path.join(__dirname, "files_db", req.body.fileTitle + ".json");
+    writeFile(
+        path.join(
+            __dirname, 
+            "files_db", 
+            req.body.fileTitle + ".json"), 
+        fileComposition, 
+        { encoding: "utf-8" })
+    .then(() => {
+        res.redirect("/");
+        res.end();
+    });
 });
 
 server.delete("/delete_file_request", (req, res) => {
@@ -54,12 +60,15 @@ server.delete("/delete_file_request", (req, res) => {
     console.log(req.body);
 
     unlink(path.join(__dirname, "files_db", req.body.fileName))
-        .then(() => res.send("File Deleted"))
+        .then(() => {
+            res.send("File Deleted");
+            res.end();
+        })
         .catch(() => { 
             console.log("Requested file does not exist");
             res.send("ERROR");
         })
-})
+});
 
 const startServer = function (){
     server.listen(port, hostname, () => {

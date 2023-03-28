@@ -6,17 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/main.js" type="module"></script>
+    <link rel="stylesheet" href="./css/modal.css">
 
+    <script src="./js/main.js" type="module"></script>
+    
     <title>Pajama Man</title>
 </head>
 <body>
     <header>
         <h1>Pajama Man</h1>
-
+        
+        
         <div id="crud-options" style="display: flex; justify-content: space-around;">
             <!-- Opens a modal with a "New Project" form -->
             <div id="new-file-button" class="button">New File Button</div>
+            <div id="new-file-modal" class="modal-container">
+                <div class="modal-contents">
+                    <form id="new-file-form" method="dialog">
+                        <label for="new-file-title">
+                            <input 
+                                name="new-file-title" 
+                                type="text"
+                                placeholder="Title"
+                                required>
+                        </label>
+                        <br>
+                        <label for="new-file-content">
+                            <textarea 
+                                name="new-file-content" 
+                                type="text" 
+                                rows="20" 
+                                cols="120"
+                                style="resize: none;"
+                                required></textarea>
+                        </label>
+                        <br>
+                        <div class="modal-buttons-collection">
+                            <label for="new-file-submit">
+                                <input class="button" name="new-file-submit" type="submit" value="Submit">
+                            </label>
+                            <div id="close-new-file-modal-button" class="close-modal-button button">Close</div>
+                        </div>
+                    </form> 
+                </div>
+            </div>
             <!-- Opens a popup that asks to confirm delete -->
             <div id="delete-file-button" class="button">Delete File Button</div>
         </div>

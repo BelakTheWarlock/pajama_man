@@ -20,10 +20,12 @@ main {
     background-color: #333333;
 }
 
-#new-file-button, #delete-file-button {
+#new-file-button, 
+#delete-file-button, 
+.close-modal-button {
     border: solid #dddddd;
     border-radius: 8px;
-}
+} 
 
 #files-list-container {
     margin: 4px 4px 4px 0px;
