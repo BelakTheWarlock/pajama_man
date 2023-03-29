@@ -3,6 +3,17 @@ document.getElementById("new-file-button").addEventListener("click", () => {
     document.getElementById("new-file-modal").style.zIndex = "2";
 
     document.getElementById("new-file-form").addEventListener("submit", () => {
+        let submittedText = document.forms["new-file-form"]["new-file-content"].value;
+        
+        let processedText = "";
+        for (let i = 0; i < submittedText.length; i++) {
+            if (submittedText[i] == "\n" || submittedText[i] == "\r") {
+                processedText += "\\n";
+                continue;
+            }
+            processedText += submittedText[i];
+        }
+
         fetch("/new_file_request", {
             method: "POST",
             headers: {
@@ -10,7 +21,7 @@ document.getElementById("new-file-button").addEventListener("click", () => {
             },
             body: JSON.stringify({
                 fileTitle: document.forms["new-file-form"]["new-file-title"].value,
-                fileContent: document.forms["new-file-form"]["new-file-content"].value,
+                fileContent: processedText,
                 dateContent: (new Date()).toLocaleDateString(),
                 date: new Date()
             })
