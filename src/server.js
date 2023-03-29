@@ -38,21 +38,31 @@ server.post("/fetch_file_request", (req, res) => {
 
 server.post("/new_file_request", (req, res) => {
     console.log("\nRoute: /new_file_request\nMethod: POST\n" + (new Date()).toLocaleString());
-    console.log(req.body);
+    let fileName = req.body.fileTitle + ".json";
 
-    let fileComposition = `{ "title": "${req.body.fileTitle}", "content":"${req.body.fileContent}" }`
-    // let filePath = path.join(__dirname, "files_db", req.body.fileTitle + ".json");
-    writeFile(
-        path.join(
-            __dirname, 
-            "files_db", 
-            req.body.fileTitle + ".json"), 
-        fileComposition, 
-        { encoding: "utf-8" })
-    .then(() => {
-        res.redirect("/");
-        res.end();
-    });
+    readdir(path.join(__dirname, "files_db"))
+        .then(dir => {
+            let count = 0;
+            dir.forEach(dirItem => {
+                if (fileName === dirItem) {
+                    count++;
+                    return;
+                }
+            });
+            if (count == 0) {
+                writeFile(
+                    path.join( __dirname, "files_db", fileName),
+                    `{ "title": "${fileName}", "content":"${req.body.fileContent}" }`,
+                    { encoding: "utf-8" })
+                .then(() => {
+                    res.status(201);
+                    res.end();
+                });
+            } else {
+                res.status(403);
+                res.end();
+            }
+        });
 });
 
 server.delete("/delete_file_request", (req, res) => {

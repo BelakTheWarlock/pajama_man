@@ -3,8 +3,10 @@ document.getElementById("new-file-button").addEventListener("click", () => {
     document.getElementById("new-file-modal").style.zIndex = "2";
 
     document.getElementById("new-file-form").addEventListener("submit", () => {
+        // let submittedTitle = document.forms["new-file-form"]["new-file-title"].value;
+        // let processedTitle = ""
+
         let submittedText = document.forms["new-file-form"]["new-file-content"].value;
-        
         let processedText = "";
         for (let i = 0; i < submittedText.length; i++) {
             if (submittedText[i] == "\n" || submittedText[i] == "\r") {
@@ -26,10 +28,11 @@ document.getElementById("new-file-button").addEventListener("click", () => {
                 date: new Date()
             })
         })
-            .then(() => {
-                window.location.reload();
+            .then(res => {
+                if( res.status === 201 ) window.location.reload();
+                else alert("File name " + document.forms["new-file-form"]["new-file-title"].value + " already exists");
             });
-    // End of Fetch
+        // End of Fetch
     })
 });
 
