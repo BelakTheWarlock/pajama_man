@@ -21,6 +21,10 @@ server.get("/files", (req, res) => {
             });
             res.send(arr);
             res.end();
+        })
+        .catch((e) => {
+            console.log(e);
+            res.status(404).send({ msg: "Unable to locate database" });
         });
 });
 
@@ -87,3 +91,9 @@ const startServer = function (){
 };
 
 startServer();
+
+/**
+ * Proof of Concept
+ * Learning from the Proof of Concept
+ * Building the final product
+ */
