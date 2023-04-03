@@ -2,6 +2,36 @@ const fileDetailsHeader = document.getElementById("file-details-title");
 const fileDetailsContent = document.getElementById("file-details-content");
 let isDatabaseConnected = true;
 
+const sendNewFile = function() {
+    let submittedText = document.forms["new-file-form"]["new-file-content"].value;
+        let processedText = "";
+        for (let i = 0; i < submittedText.length; i++) {
+            if (submittedText[i] == "\n" || submittedText[i] == "\r") {
+                processedText += "\\n";
+                continue;
+            }
+            processedText += submittedText[i];
+        }
+
+        fetch("/new_file_request", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fileTitle: document.forms["new-file-form"]["new-file-title"].value,
+                fileContent: processedText,
+                dateContent: (new Date()).toLocaleDateString(),
+                date: new Date()
+            })
+        })
+            .then(res => {
+                if( res.status === 201 ) window.location.reload();
+                else alert("File name " + document.forms["new-file-form"]["new-file-title"].value + " already exists");
+            });
+        // End of Fetch
+} 
+
 fetch("/files")
     .then(response => {
         if (response.status === 404) {
@@ -53,42 +83,10 @@ document.getElementById("new-file-button").addEventListener("click", () => {
     }
     document.getElementById("new-file-modal").style.display = "flex";
     document.getElementById("new-file-modal").style.zIndex = "2";
-
-    document.getElementById("new-file-form").addEventListener("submit", () => {
-        // let submittedTitle = document.forms["new-file-form"]["new-file-title"].value;
-        // let processedTitle = ""
-
-        let submittedText = document.forms["new-file-form"]["new-file-content"].value;
-        let processedText = "";
-        for (let i = 0; i < submittedText.length; i++) {
-            if (submittedText[i] == "\n" || submittedText[i] == "\r") {
-                processedText += "\\n";
-                continue;
-            }
-            processedText += submittedText[i];
-        }
-
-        fetch("/new_file_request", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                fileTitle: document.forms["new-file-form"]["new-file-title"].value,
-                fileContent: processedText,
-                dateContent: (new Date()).toLocaleDateString(),
-                date: new Date()
-            })
-        })
-            .then(res => {
-                if( res.status === 201 ) window.location.reload();
-                else alert("File name " + document.forms["new-file-form"]["new-file-title"].value + " already exists");
-            });
-        // End of Fetch
-    })
 });
 
-// Modal for creating a new file
+document.getElementById("new-file-form").addEventListener("submit", () => sendNewFile());
+
 document.getElementById("close-new-file-modal-button").addEventListener("click", () => {
     document.getElementById("new-file-modal").style.display = "none";
     document.getElementById("new-file-modal").style.zIndex = -1;

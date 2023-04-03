@@ -91,9 +91,3 @@ const startServer = function (){
 };
 
 startServer();
-
-/**
- * Proof of Concept
- * Learning from the Proof of Concept
- * Building the final product
- */

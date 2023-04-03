@@ -1,0 +1,96 @@
+body {
+    min-width: 50%;
+    max-width: 100%;
+    background-color: #111111;
+    color: #dddddd;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+main {
+    display: flex;
+}
+
+.button {
+    border: solid #dddddd;
+    border-radius: 8px;
+    padding: 12px;
+    width: fit-content;
+    background-color: #111111;
+    color: #dddddd;
+    font-size: 1.16em;
+    user-select: none;
+    cursor: pointer;
+}
+
+input.button {
+    font-size: 1em;
+}
+
+.button:hover {
+    background-color: #333333;
+}
+
+#files-list-container {
+    margin: 4px 4px 4px 0px;
+    border: solid #ddd;
+    border-radius: 8px;
+    width: 50%;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-list-item {
+    margin: 0 0 0 0;
+    border: none;
+    width: 95%;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#file-details-container {
+    margin: 4px 4px 4px 0px;
+    border: solid #dddddd;
+    border-radius: 8px;
+    width: 50%;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-container {
+    position: fixed;
+    z-index: 2;
+
+    margin: 0;
+    border: none;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #00000099;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-contents {
+    position: relative;
+    border-radius: 12px;
+    padding: 12px;
+    top: 32px;
+    width: fit-content;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    background-color: #111111;
+}
+
+.modal-buttons-collection {
+    display: flex;
+}

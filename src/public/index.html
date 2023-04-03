@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="./css/modal.css">
 
     <script src="./js/main.js" type="module"></script>
+    <script src="./js/themes.js" defer></script>
     
     <title>Pajama Man</title>
 </head>
 <body>
     <header>
-        <h1>Pajama Man</h1>
+        <div id="themes-button" class="button"><h2>Current Theme: <span id="current-theme"></span></h2></div>
         
         <div id="crud-options" style="display: flex; justify-content: space-around;">
             <!-- Opens a modal with a "New Project" form -->
@@ -41,9 +42,7 @@
                         </label>
                         <br>
                         <div class="modal-buttons-collection">
-                            <label for="new-file-submit">
-                                <input class="button" name="new-file-submit" type="submit" value="Submit">
-                            </label>
+                            <input class="button" name="new-file-submit" type="submit" value="Submit">
                             <div id="close-new-file-modal-button" class="close-modal-button button">Close</div>
                         </div>
                     </form> 
@@ -60,5 +59,6 @@
             <p id="file-details-content" class="file-details"></p>
         </div>
     </main>
+    <div id="cssbadpractice"><link rel="stylesheet" href="./css/darkstyle.css"></div>
 </body>
 </html>
